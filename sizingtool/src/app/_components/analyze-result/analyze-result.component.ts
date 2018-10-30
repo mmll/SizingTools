@@ -7,13 +7,17 @@ const echarts = require('echarts');
   styleUrls: ['./analyze-result.component.css']
 })
 export class AnalyzeResultComponent implements OnInit {
-  myChart;
+  capacityChart;
+  overheadChart;
+  rateChart;
   constructor() {
   }
 
   ngOnInit() {
-    this.myChart = echarts.init(document.getElementById('main'));
-    this.myChart.setOption({
+    this.capacityChart = echarts.init(document.getElementById('capacity-chart'));
+    this.overheadChart = echarts.init(document.getElementById('overhead-chart'));
+    this.rateChart = echarts.init(document.getElementById('rate-chart'));
+    let option = {
       backgroundColor: '#2c343c',
       visualMap: {
         show: false,
@@ -59,7 +63,10 @@ export class AnalyzeResultComponent implements OnInit {
           }
         }
       ]
-    });
+    };
+    this.capacityChart.setOption(option);
+    this.overheadChart.setOption(option);
+    this.rateChart.setOption(option);
   }
 
 }
