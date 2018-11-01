@@ -1,0 +1,11 @@
+<form clrForm>
+  <clr-modal [(clrModalOpen)]="show" [formGroup]="resultSaveForm">
+    <div class="modal-title"> Save The Result</div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Company Name</label>
+        <input type="text" name="companyName" [(ngModel)]="companyName" formControlName="company_name" required/>
+      </div>
+    </div>
+  </clr-modal>
+</form>

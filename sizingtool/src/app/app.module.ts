@@ -9,13 +9,15 @@ import {SizingFormComponent} from './_components/sizing-form/sizing-form.compone
 import {AnalyzeResultComponent} from './_components/analyze-result/analyze-result.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { ExportComponent } from './_components/export/export.component';
+import { SaveResultDialogComponent } from './_components/save-result-dialog/save-result-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SizingFormComponent,
     AnalyzeResultComponent,
-    ExportComponent
+    ExportComponent,
+    SaveResultDialogComponent
   ],
   imports: [
     BrowserModule,

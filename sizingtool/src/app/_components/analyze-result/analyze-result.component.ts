@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {CalculateService} from "../../_service/calculate.service";
+import {SaveResultDialogComponent} from "../save-result-dialog/save-result-dialog.component";
 const echarts = require('echarts');
 
 @Component({
@@ -11,6 +12,7 @@ const echarts = require('echarts');
 })
 export class AnalyzeResultComponent implements OnInit {
   //analyzeResult$: Observable;
+  @ViewChild(SaveResultDialogComponent) modal: SaveResultDialogComponent;
   capacityChart;
   overheadChart;
   rateChart;
@@ -75,6 +77,16 @@ export class AnalyzeResultComponent implements OnInit {
     this.capacityChart.setOption(option);
     this.overheadChart.setOption(option);
     this.rateChart.setOption(option);
+  }
+  ngAfterViewInit():void{
+    this.modal.onOK.subscribe(user=>{
+      this.modal.close();
+    });
+  }
+  ngOnDestroy(){
+    echarts.dispose(document.getElementById('capacity-chart'));
+    echarts.dispose(document.getElementById('overhead-chart'));
+    echarts.dispose(document.getElementById('rate-chart'));
   }
 
 }
