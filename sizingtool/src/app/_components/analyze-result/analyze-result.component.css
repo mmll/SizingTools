@@ -10,3 +10,11 @@
   height:200px;
   padding: 0 12px;
 }
+.row{
+  display: flex;
+  justify-content: space-around;
+}
+.end-row{
+  display: flex;
+  justify-content: flex-end;
+}

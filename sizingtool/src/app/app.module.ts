@@ -1,19 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './_components/app.component';
-import { ClarityModule, ClrFormsNextModule } from '@clr/angular';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SizingFormComponent } from './_components/sizing-form/sizing-form.component';
-import { AnalyzeResultComponent } from './_components/analyze-result/analyze-result.component';
-import { ReactiveFormsModule , FormsModule } from '@angular/forms';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './_components/app.component';
+import {ClarityModule, ClrFormsNextModule} from '@clr/angular';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SizingFormComponent} from './_components/sizing-form/sizing-form.component';
+import {AnalyzeResultComponent} from './_components/analyze-result/analyze-result.component';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { ExportComponent } from './_components/export/export.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SizingFormComponent,
-    AnalyzeResultComponent
+    AnalyzeResultComponent,
+    ExportComponent
   ],
   imports: [
     BrowserModule,
@@ -22,9 +24,10 @@ import { ReactiveFormsModule , FormsModule } from '@angular/forms';
     ClrFormsNextModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

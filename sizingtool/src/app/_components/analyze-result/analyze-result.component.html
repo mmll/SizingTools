@@ -1,45 +1,40 @@
-
-  <div class="row">
-    <div class="col">
-      <h4>Capacity and Utilization</h4>
+<h4>Capacity and Utilization</h4>
+<div class="row justify-content-center">
+  <div>
+    <div class="end-row">
+      <app-export [exportData]="result"></app-export>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 col-sm-4">
+    <div class="row">
+
       <div class="">
-          <div class="">
-            <h4 class="result-header">2,567 TiB</h4>
-            <div>Usable Capacity</div>
-          </div>
+        <h4 class="result-header">2,567 TiB</h4>
+        <div>Usable Capacity</div>
+
+      </div>
+      <div class="">
+
+        <h4 class="result-header">2,567 TiB</h4>
+        <div>User Data Capacity</div>
+
+      </div>
+      <div class="">
+
+        <h4 class="result-header warning">94.22 Days</h4>
+        <div>Out Of Capacity</div>
+
       </div>
     </div>
-    <div class="col-md-4 col-sm-4">
-      <div class="">
-        <div class="">
-          <h4 class="result-header">2,567 TiB</h4>
-          <div>User Data Capacity</div>
-        </div>
+
+    <div class="row">
+      <div class="" id="capacity-chart" class="chart-container">
+
       </div>
-    </div>
-    <div class="col-md-4 col-sm-4">
-      <div class="">
-        <div class="">
-          <h4 class="result-header warning">94.22 Days</h4>
-          <div>Out Of Capacity</div>
-        </div>
+      <div class="" id="overhead-chart" class="chart-container">
+
+      </div>
+      <div class="" id="rate-chart" class="chart-container">
+
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-4 col-sm-8" id="capacity-chart" class="chart-container">
-
-    </div>
-    <div class="col-md-4 col-sm-8" id="overhead-chart" class="chart-container">
-
-    </div>
-    <div class="col-md-4 col-sm-8" id="rate-chart" class="chart-container">
-
-    </div>
-  </div>
-
+</div>

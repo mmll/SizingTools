@@ -1,87 +1,95 @@
+<h4>Customer Scenario</h4>
 <div class="row justify-content-center">
-  <div class="">
-    <h4>Customer Scenario</h4>
+  <div>
     <form clrForm [formGroup]="sizingForm" class="clr-form clr-form-horizontal" (ngSubmit)="onSubmit()">
-      <section class="form-block">
-        <label>System Configuration</label>
-        <clr-select-container>
-          <label for="ecs_model">ECS Model</label>
-            <select clrSelect id="ecs_model" class="clr-select" formControlName="ecs_model">
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+
+        <section class="form-block">
+          <label>System Configuration</label>
+          <clr-select-container>
+            <label for="ecs_model">ECS Model</label>
+            <select clrSelect id="ecs_model" class="clr-select" [(ngModel)]="formEntity.ecs_model"
+                    formControlName="ecs_model">
+              <option *ngFor="let a of ecs_model" [ngValue]="a.id">{{a.name}}</option>
             </select>
-          <clr-control-error>ECS Model is required.</clr-control-error>
+            <clr-control-error>ECS Model is required.</clr-control-error>
           </clr-select-container>
 
-        <clr-select-container>
-          <label for="ec_option" class="">EC Option</label>
-            <select clrSelect id="ec_option" class="clr-select" formControlName="ec_option">
-              <option *ngFor="let c of config_ec_option" [ngValue]="c">{{c.name}}</option>
+          <clr-select-container>
+            <label for="ec_option" class="">EC Option</label>
+            <select clrSelect id="ec_option" class="clr-select" formControlName="ec_option"
+                    [(ngModel)]="formEntity.ec_option">
+              <option *ngFor="let c of config_ec_option" [ngValue]="c.id">{{c.name}}</option>
             </select>
-            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            <clr-control-error>EC Option is required.</clr-control-error>
           </clr-select-container>
 
-        <clr-input-container>
-          <label>Number of ECS Systems</label>
-          <input clrInput type="number" [(ngModel)]="sys_number" formControlName="sys_number" name="sys_number"
-                 required/>
-          <clr-control-error>Number of ECS Systems is required.</clr-control-error>
-        </clr-input-container>
+          <clr-input-container>
+            <label>Number of ECS Systems</label>
+            <input clrInput type="number" [(ngModel)]="formEntity.sys_number" formControlName="sys_number"
+                   name="sys_number" min="0"
+                   required/>
+            <clr-control-error>Number of ECS Systems is required.</clr-control-error>
+          </clr-input-container>
 
-        <clr-input-container>
-          <label>Number of VDCs Processing Writes</label>
-          <input clrInput type="number" [(ngModel)]="vdc_write_number" formControlName="vdc_write_number"
-                 name="vdc_write_number"
-                 required/>
-          <clr-control-error>Number of VDCs is required.</clr-control-error>
-        </clr-input-container>
+          <clr-input-container>
+            <label>Number of VDCs Processing Writes</label>
+            <input clrInput type="number" [(ngModel)]="formEntity.vdc_write_number" formControlName="vdc_write_number"
+                   min="0"
+                   name="vdc_write_number"
+                   required/>
+            <clr-control-error>Number of VDCs is required.</clr-control-error>
+          </clr-input-container>
 
-        <clr-input-container>
-          <label>Number of VDCs</label>
-          <input clrInput type="number" [(ngModel)]="vdc_number" formControlName="vdc_number" name="vdc_number"
-                 required/>
-          <clr-control-error>Number of VDCs is required.</clr-control-error>
-        </clr-input-container>
+          <clr-input-container>
+            <label>Number of VDCs</label>
+            <input clrInput type="number" [(ngModel)]="formEntity.vdc_number" formControlName="vdc_number"
+                   name="vdc_number" min="0"
+                   required/>
+            <clr-control-error>Number of VDCs is required.</clr-control-error>
+          </clr-input-container>
 
-        <clr-input-container>
-          <label>Max Capacity</label>
-          <input clrInput type="number" [(ngModel)]="max_capacity" formControlName="max_capacity" name="max_capacity"
-                 required/>
-          <clr-control-error>Max Capacity is required.</clr-control-error>
-        </clr-input-container>
+          <clr-input-container>
+            <label>Max Capacity (%)</label>
+            <input clrInput type="number" [(ngModel)]="formEntity.max_capacity" formControlName="max_capacity"
+                   name="max_capacity" min="0"
+                   required/>
+            <clr-control-error>Max Capacity is required.</clr-control-error>
+          </clr-input-container>
 
-      </section>
-      <section class="form-block">
-        <label>Load Pattern</label>
-        <clr-input-container>
-          <label>Average Object Size (in KiB)</label>
-          <input clrInput type="number" [(ngModel)]="average_object" formControlName="average_object"
-                 name="average_object"
-                 required/>
-          <clr-control-error>Average Object Size is required.</clr-control-error>
-        </clr-input-container>
+        </section>
+        <section class="form-block">
+          <label>Load Pattern</label>
+          <clr-input-container>
+            <label>Average Object Size (in KiB)</label>
+            <input clrInput type="number" [(ngModel)]="formEntity.average_object" formControlName="average_object"
+                   min="0"
+                   name="average_object"
+                   required/>
+            <clr-control-error>Average Object Size is required.</clr-control-error>
+          </clr-input-container>
 
-        <clr-input-container>
-          <label>Ingest Rate (GiB / Day)</label>
-          <input clrInput type="number" [(ngModel)]="ingest_rate" formControlName="ingest_rate" name="ingest_rate"
-                 required/>
-          <clr-control-error>Ingest Rate is required.</clr-control-error>
-        </clr-input-container>
+          <clr-input-container>
+            <label>Ingest Rate (GiB / Day)</label>
+            <input clrInput type="number" [(ngModel)]="formEntity.ingest_rate" formControlName="ingest_rate"
+                   name="ingest_rate" min="0"
+                   required/>
+            <clr-control-error>Ingest Rate is required.</clr-control-error>
+          </clr-input-container>
 
-        <clr-input-container>
-          <label>Delete Rate (GiB / Day)</label>
-          <input clrInput type="number" [(ngModel)]="delete_rate" formControlName="delete_rate" name="delete_rate"
-                 required/>
-          <clr-control-error>Delete Rate is required.</clr-control-error>
-        </clr-input-container>
-      </section>
-      <button class="btn btn-primary" type="submit" [disabled]="!sizingForm.valid">
-        Done
-      </button>
-      <button class="btn btn-primary">
-        Reset
-      </button>
+          <clr-input-container>
+            <label>Delete Rate (GiB / Day)</label>
+            <input clrInput type="number" [(ngModel)]="formEntity.delete_rate" formControlName="delete_rate"
+                   name="delete_rate" min="0"
+                   required/>
+            <clr-control-error>Delete Rate is required.</clr-control-error>
+          </clr-input-container>
+        </section>
+          <button class="btn btn-primary" type="submit" [disabled]="!sizingForm.valid">
+            Done
+          </button>
+          <button class="btn btn-primary">
+            Reset
+          </button>
     </form>
   </div>
 </div>

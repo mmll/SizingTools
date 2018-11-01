@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
+import {CalculateService} from "../../_service/calculate.service";
 const echarts = require('echarts');
 
 @Component({
@@ -7,10 +10,15 @@ const echarts = require('echarts');
   styleUrls: ['./analyze-result.component.css']
 })
 export class AnalyzeResultComponent implements OnInit {
+  //analyzeResult$: Observable;
   capacityChart;
   overheadChart;
   rateChart;
-  constructor() {
+  result;
+  constructor(private route: ActivatedRoute, private calculate: CalculateService) {
+    this.route.queryParams.subscribe(param=>{
+        this.result = this.calculate.getResult(param);
+    })
   }
 
   ngOnInit() {
@@ -18,7 +26,7 @@ export class AnalyzeResultComponent implements OnInit {
     this.overheadChart = echarts.init(document.getElementById('overhead-chart'));
     this.rateChart = echarts.init(document.getElementById('rate-chart'));
     let option = {
-      backgroundColor: '#2c343c',
+      backgroundColor: '#ffffff',
       visualMap: {
         show: false,
         min: 80,
@@ -43,14 +51,14 @@ export class AnalyzeResultComponent implements OnInit {
           label: {
             normal: {
               textStyle: {
-                color: 'rgba(255, 255, 255, 0.3)'
+                color: 'rgba(0, 0, 0, 0.3)'
               }
             }
           },
           labelLine: {
             normal: {
               lineStyle: {
-                color: 'rgba(255, 255, 255, 0.3)'
+                color: 'rgba(0, 0, 0, 0.3)'
               }
             }
           },
