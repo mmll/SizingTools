@@ -11,14 +11,15 @@ const echarts = require('echarts');
   styleUrls: ['./analyze-result.component.css']
 })
 export class AnalyzeResultComponent implements OnInit {
-  //analyzeResult$: Observable;
   @ViewChild(SaveResultDialogComponent) modal: SaveResultDialogComponent;
   capacityChart;
   overheadChart;
   rateChart;
   result;
+  input;
   constructor(private route: ActivatedRoute, private calculate: CalculateService) {
     this.route.queryParams.subscribe(param=>{
+        this.input = param;
         this.result = this.calculate.getResult(param);
     })
   }
@@ -79,7 +80,8 @@ export class AnalyzeResultComponent implements OnInit {
     this.rateChart.setOption(option);
   }
   ngAfterViewInit():void{
-    this.modal.onOK.subscribe(user=>{
+    this.modal.onOK.subscribe($event=>{
+      console.log($event.companyName);
       this.modal.close();
     });
   }

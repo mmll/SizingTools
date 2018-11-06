@@ -9,19 +9,23 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 export class SaveResultDialogComponent implements OnInit {
   @Output() onOK: EventEmitter<any> = new EventEmitter<any>();
   show = false;
-  resultSaveForm
+  resultSaveForm;
+  companyName: string;
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.resultSaveForm = this.formBuilder.group({
-      company_name: new FormControl("", Validators.compose([Validators.required]))
+      company_name: new FormControl(this.companyName, Validators.compose([Validators.required]))
     })
 
   }
   close(){
     this.show = false;
   }
+  open(){
+    this.show = true;
+  }
   onSubmit() {
-    this.onOK.emit();
+    this.onOK.emit({companyName:this.companyName});
   }
 }
