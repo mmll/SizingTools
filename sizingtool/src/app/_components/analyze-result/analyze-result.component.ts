@@ -17,10 +17,15 @@ export class AnalyzeResultComponent implements OnInit {
   rateChart;
   result;
   input;
+  exportData
   constructor(private route: ActivatedRoute, private calculate: CalculateService) {
     this.route.queryParams.subscribe(param=>{
         this.input = param;
         this.result = this.calculate.getResult(param);
+        this.exportData = {
+          input: this.input,
+          result: this.result
+        }
     })
   }
 
@@ -28,56 +33,57 @@ export class AnalyzeResultComponent implements OnInit {
     this.capacityChart = echarts.init(document.getElementById('capacity-chart'));
     this.overheadChart = echarts.init(document.getElementById('overhead-chart'));
     this.rateChart = echarts.init(document.getElementById('rate-chart'));
+
     let option = {
-      backgroundColor: '#ffffff',
-      visualMap: {
-        show: false,
-        min: 80,
-        max: 600,
-        inRange: {
-          colorLightness: [0, 1]
-        }
+      angleAxis: {
       },
-      series : [
-        {
-          name: '访问来源',
-          type: 'pie',
-          radius: '55%',
-          data:[
-            {value:235, name:'视频广告'},
-            {value:274, name:'联盟广告'},
-            {value:310, name:'邮件营销'},
-            {value:335, name:'直接访问'},
-            {value:400, name:'搜索引擎'}
-          ],
-          roseType: 'angle',
-          label: {
-            normal: {
-              textStyle: {
-                color: 'rgba(0, 0, 0, 0.3)'
-              }
-            }
-          },
-          labelLine: {
-            normal: {
-              lineStyle: {
-                color: 'rgba(0, 0, 0, 0.3)'
-              }
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#c23531',
-              shadowBlur: 200,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }
-      ]
+      radiusAxis: {
+        type: 'category',
+        data: ['Usable Capacity', 'Net Data Capacity', 'Effective Capacity','Raw Capacity'],
+        z: 50
+      },
+      polar: {
+      },
+      tooltip:{
+        show: true,
+      },
+      series: [{
+        type: 'bar',
+        data: [2567,2300,2310,6985],
+        coordinateSystem: 'polar',
+        stack: 'a'
+      }]
+    };
+    let chartOption = {
+      series: [{
+        type: 'treemap',
+        data: [{
+          name: 'nodeA',            // First tree
+          value: 10,
+          children: [{
+            name: 'nodeAa',       // First leaf of first tree
+            value: 4
+          }, {
+            name: 'nodeAb',       // Second leaf of first tree
+            value: 6
+          }]
+        }, {
+          name: 'nodeB',            // Second tree
+          value: 20,
+          children: [{
+            name: 'nodeBa',       // Son of first tree
+            value: 20,
+            children: [{
+              name: 'nodeBa1',  // Granson of first tree
+              value: 20
+            }]
+          }]
+        }]
+      }]
     };
     this.capacityChart.setOption(option);
-    this.overheadChart.setOption(option);
-    this.rateChart.setOption(option);
+    this.overheadChart.setOption(chartOption);
+    //this.rateChart.setOption(option);
   }
   ngAfterViewInit():void{
     this.modal.onOK.subscribe($event=>{

@@ -34,7 +34,10 @@ export class SizingFormComponent implements OnInit {
       delete_rate: new FormControl(this.formEntity.delete_rate, Validators.compose([Validators.required, Validators.min(0)])),
     });
   }
-
+  resetForm(){
+    this.sizingForm.reset();
+    return false;
+  }
   onSubmit() {
     let navigationExtras: NavigationExtras = {
       queryParams: this.formEntity,
