@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './_components/app.component';
 import {ClarityModule, ClrFormsNextModule} from '@clr/angular';
+import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SizingFormComponent} from './_components/sizing-form/sizing-form.component';
 import {AnalyzeResultComponent} from './_components/analyze-result/analyze-result.component';
@@ -31,6 +32,7 @@ import { TestingComponent } from './_components/testing/testing.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

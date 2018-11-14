@@ -3,6 +3,7 @@ import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {NavigationExtras, Router} from '@angular/router';
 import {StaticConfig} from '../../static-config'
 import {SizingForm} from "../../_entity/sizing-form";
+import {CalculateService} from "../../_service/calculate.service";
 
 @Component({
   selector: 'app-sizing-form',
@@ -15,7 +16,7 @@ export class SizingFormComponent implements OnInit {
   config_ec_option;
   formEntity;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private calculateService: CalculateService) {
   }
 
   ngOnInit() {
@@ -39,11 +40,12 @@ export class SizingFormComponent implements OnInit {
     return false;
   }
   onSubmit() {
-    let navigationExtras: NavigationExtras = {
-      queryParams: this.formEntity,
-      }
-    ;
-
-    this.router.navigate(['/result'], navigationExtras)
+    this.calculateService.getResult(this.formEntity).subscribe((data: Object)=>{
+      let navigationExtras: NavigationExtras = {
+          queryParams: data,
+        }
+      ;
+      this.router.navigate(['/result'], navigationExtras);
+    });
   }
 }
