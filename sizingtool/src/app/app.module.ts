@@ -10,6 +10,8 @@ import {AnalyzeResultComponent} from './_components/analyze-result/analyze-resul
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { ExportComponent } from './_components/export/export.component';
 import { SaveResultDialogComponent } from './_components/save-result-dialog/save-result-dialog.component';
+import { HistoryComponent } from './_components/history/history.component';
+import { TestingComponent } from './_components/testing/testing.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { SaveResultDialogComponent } from './_components/save-result-dialog/save
     SizingFormComponent,
     AnalyzeResultComponent,
     ExportComponent,
-    SaveResultDialogComponent
+    SaveResultDialogComponent,
+    HistoryComponent,
+    TestingComponent
   ],
   imports: [
     BrowserModule,
