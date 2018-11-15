@@ -9,6 +9,6 @@ export class CalculateService {
   constructor(private http: HttpClient) { }
 
   getResult(input :Object){
-    return this.http.post("",HttpClient);
+    return this.http.get("http://localhost:4200/app/config/configData.json")
   }
 }

@@ -4,15 +4,15 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './_components/app.component';
 import {ClarityModule, ClrFormsNextModule} from '@clr/angular';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SizingFormComponent} from './_components/sizing-form/sizing-form.component';
 import {AnalyzeResultComponent} from './_components/analyze-result/analyze-result.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import { ExportComponent } from './_components/export/export.component';
-import { SaveResultDialogComponent } from './_components/save-result-dialog/save-result-dialog.component';
-import { HistoryComponent } from './_components/history/history.component';
-import { TestingComponent } from './_components/testing/testing.component';
+import {ExportComponent} from './_components/export/export.component';
+import {SaveResultDialogComponent} from './_components/save-result-dialog/save-result-dialog.component';
+import {HistoryComponent} from './_components/history/history.component';
+import {ChartConfig} from "./config/chart.config"
 
 @NgModule({
   declarations: [
@@ -21,8 +21,7 @@ import { TestingComponent } from './_components/testing/testing.component';
     AnalyzeResultComponent,
     ExportComponent,
     SaveResultDialogComponent,
-    HistoryComponent,
-    TestingComponent
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +33,9 @@ import { TestingComponent } from './_components/testing/testing.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
