@@ -6,7 +6,7 @@ function getLevelOption(){
       itemStyle: {
         normal: {
           borderColor: '#777',
-          borderWidth: 0,
+          borderWidth: 2,
           gapWidth: 1
         }
       },
@@ -38,37 +38,48 @@ function getLevelOption(){
         }
       }
     }
-  ]
+  ];
 }
+function unitFilter(value) {
+  if (value === 0) {
+    return '0 B';
+  }
+  let k = 1024;
+  let sizes = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  let i = Math.floor(Math.log(value) / Math.log(k));
+
+  return (value / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+}
+
 export const ChartConfig = {
   getLevelOption: getLevelOption,
-  capacityOption:{
+  capacityOption: {
 
     title: {
-      text: 'Disk Usage',
+      text: 'Capacity Usage',
       left: 'center'
     },
 
     tooltip: {
       formatter: function (info) {
-        var value = info.value;
-        var treePathInfo = info.treePathInfo;
-        var treePath = [];
+        let value = info.value;
+        let treePathInfo = info.treePathInfo;
+        let treePath = [];
 
-        for (var i = 1; i < treePathInfo.length; i++) {
+        for (let i = 1; i < treePathInfo.length; i++) {
           treePath.push(treePathInfo[i].name);
         }
 
         return [
           '<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
-          'Disk Usage: ' + formatUtil.addCommas(value) + ' KB',
+          'Capacity Usage: ' + unitFilter(value),
         ].join('');
       }
     },
 
     series: [
       {
-        name:'Disk Usage',
+        name:'Capacity Usage',
         type:'treemap',
         visibleMin: 300,
         label: {

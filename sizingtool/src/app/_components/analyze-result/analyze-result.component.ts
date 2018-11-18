@@ -1,9 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Observable} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {CalculateService} from "../../_service/calculate.service";
-import {SaveResultDialogComponent} from "../save-result-dialog/save-result-dialog.component";
-import {ChartConfig} from "../../config/chart.config"
+import {Observable} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {CalculateService} from '../../_service/calculate.service';
+import {SaveResultDialogComponent} from '../save-result-dialog/save-result-dialog.component';
+import {ChartConfig} from '../../config/chart.config';
+import {LoadingService} from '../../_service/loading.service';
+
 const echarts = require('echarts');
 
 @Component({
@@ -18,30 +20,40 @@ export class AnalyzeResultComponent implements OnInit {
   input;
   exportData;
   diskData;
-  constructor(private route: ActivatedRoute, private calculate: CalculateService) {
-    this.route.queryParams.subscribe(param=>{
-        this.result = param;
-        // this.exportData = {
-        //   input: this.input,
-        //   result: this.result
-        // }
-    })
+
+  constructor(private route: ActivatedRoute, private calculate: CalculateService, private loading: LoadingService) {
+    this.route.queryParams.subscribe(param => {
+      this.loading.show('result');
+      this.input = param;
+      this.result = 'resulttesting';
+      this.calculate.getResult(this.input).subscribe( data => {
+          this.result = data;
+          const option = ChartConfig.capacityOption;
+          option.series[0].data = this.result;
+          this.capacityChart.setOption(option);
+          this.loading.hide('result');
+        }
+      );
+      this.exportData = {
+        input: this.input,
+        result: this.result
+      };
+    });
   }
 
   ngOnInit() {
     this.capacityChart = echarts.init(document.getElementById('capacity-chart'));
-    let option = ChartConfig.capacityOption;
-    option.series[0].data = this.result;
-    this.capacityChart.setOption(option);
   }
-  ngAfterViewInit():void{
-    this.modal.onOK.subscribe($event=>{
+
+  ngAfterViewInit(): void {
+    this.modal.onOK.subscribe($event => {
       console.log($event.companyName);
       this.modal.close();
     });
   }
+
   colorMappingChange(value) {
-    var levelOption = ChartConfig.getLevelOption();
+    const levelOption = ChartConfig.getLevelOption();
     this.capacityChart.setOption({
       series: [{
         levels: levelOption
@@ -49,8 +61,9 @@ export class AnalyzeResultComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     echarts.dispose(document.getElementById('capacity-chart'));
   }
 
 }
+

@@ -12,7 +12,9 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {ExportComponent} from './_components/export/export.component';
 import {SaveResultDialogComponent} from './_components/save-result-dialog/save-result-dialog.component';
 import {HistoryComponent} from './_components/history/history.component';
-import {ChartConfig} from "./config/chart.config"
+import { LoadingComponent } from './_components/loading/loading.component';
+import {LoadingService} from './_service/loading.service';
+import {CalculateService} from './_service/calculate.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import {ChartConfig} from "./config/chart.config"
     AnalyzeResultComponent,
     ExportComponent,
     SaveResultDialogComponent,
-    HistoryComponent
+    HistoryComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import {ChartConfig} from "./config/chart.config"
     HttpClientModule
   ],
   providers: [
-
+    LoadingService,
+    CalculateService
   ],
   bootstrap: [AppComponent]
 })
