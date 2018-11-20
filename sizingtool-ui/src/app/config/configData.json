@@ -1,0 +1,41 @@
+[
+  {
+    "value": 40,
+    "name": "Accessibility",
+    "path": "Accessibility"
+  },
+  {
+    "value": 180000,
+    "name": "Accounts",
+    "path": "Accounts",
+    "children": [
+      {
+        "value": 76000,
+        "name": "Access",
+        "path": "Accounts/Access",
+        "children": [
+          {
+            "value": 1200,
+            "name": "DefaultAccessPlugin.bundle",
+            "path": "Accounts/Access/DefaultAccessPlugin.bundle"
+          },
+          {
+            "value": 280,
+            "name": "FacebookAccessPlugin.bundle",
+            "path": "Accounts/Access/FacebookAccessPlugin.bundle"
+          },
+          {
+            "value": 2000,
+            "name": "LinkedInAccessPlugin.bundle",
+            "path": "Accounts/Access/LinkedInAccessPlugin.bundle"
+          },
+          {
+            "value": 1600,
+            "name": "TencentWeiboAccessPlugin.bundle",
+            "path": "Accounts/Access/TencentWeiboAccessPlugin.bundle"
+          }
+        ]
+      }
+    ]
+  }
+  ]

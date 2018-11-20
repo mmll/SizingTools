@@ -1,0 +1,20 @@
+.result-header{
+  color: #004A70;
+  font-weight: bold;
+}
+.result-header.warning{
+  color: #A32100;
+}
+.chart-container{
+  width: 700px;
+  height:500px;
+  padding: 0 12px;
+}
+.row{
+  display: flex;
+  justify-content: space-around;
+}
+.end-row{
+  display: flex;
+  justify-content: flex-end;
+}

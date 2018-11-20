@@ -1,0 +1,19 @@
+<form clrForm clrLayout="horizontal">
+  <clr-modal [(clrModalOpen)]="show" [formGroup]="resultSaveForm" class="modal-dialog modal-lg">
+    <div class="modal-title"> Save The Result</div>
+    <div class="modal-body">
+      <clr-input-container>
+        <label class="clr-control-label clr-col-md-4">Company Name</label>
+        <input class="clr-control-label clr-col-md-8" clrInput type="text" name="companyName" [(ngModel)]="companyName" formControlName="company_name"
+               required/>
+        <clr-control-error>Company Name is required.</clr-control-error>
+      </clr-input-container>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="close()">Cancel</button>
+      <button type="button" [disabled]="!resultSaveForm.valid" class="btn btn-primary" (click)="onSubmit()">Ok
+      </button>
+    </div>
+  </clr-modal>
+</form>
+

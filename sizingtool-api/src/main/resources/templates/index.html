@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:text="'person list by age: ' + ${personList}"></p>
+<h1>Form</h1>
+<form action="#" th:action="@{/addPerson}" th:object="${person}" method="post">
+    <p>Name: <input type="text" th:field="*{name}"/></p>
+    <p>age: <input type="text" th:field="*{age}"/></p>
+    <p><input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
